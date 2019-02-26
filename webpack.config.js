@@ -3,12 +3,12 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: {
-    app: __dirname + "/src/react_sample.jsx"
+    app: __dirname + "/app.jsx"
   },//已多次提及的唯一入口文件
-  // output: {
-  //   path: path.resolve(__dirname, 'dist'),//打包后的文件存放的地方
-  //   filename: "[name].[hash].js"//打包后输出文件的文件名
-  // },
+  output: {
+    path: path.resolve(__dirname, 'dist'),//打包后的文件存放的地方
+    filename: "[name].[hash].js"//打包后输出文件的文件名
+  },
   mode: "development",
   devServer: {
     contentBase: __dirname,
@@ -19,9 +19,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(), // 热替换需要引入
     new HtmlWebpackPlugin({
-      template: './index.html',
-      hash: true,
-      inject: false
+      template: './index.html'
     }),
     // {//生成新的chunkhash index.html
     //   chunksSortMode: 'none',
@@ -37,7 +35,7 @@ module.exports = {
         test: /\.css$/,
         use: [
           "style-loader",
-          "css-loader"
+          "css-loader",
         ]
       },
       {
